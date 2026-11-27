@@ -28,6 +28,12 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse("VALIDATION_FAILED", message));
     }
 
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ErrorResponse> notFound(NotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ErrorResponse("NOT_FOUND", e.getMessage()));
+    }
+
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ErrorResponse> unauthorized(BadCredentialsException e) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)

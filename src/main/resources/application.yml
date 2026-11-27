@@ -13,3 +13,9 @@ mybatis:
 jwt:
   secret: ${JWT_SECRET}
   expiration-ms: 3600000
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
