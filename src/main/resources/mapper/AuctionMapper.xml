@@ -34,4 +34,16 @@
         LEFT JOIN users b ON b.id = a.highest_bidder_id
         WHERE a.id = #{id}
     </select>
+
+    <update id="startDueAuctions">
+        UPDATE auctions
+        SET status = 'ONGOING'
+        WHERE status = 'SCHEDULED' AND start_at &lt;= #{now}
+    </update>
+
+    <update id="endDueAuctions">
+        UPDATE auctions
+        SET status = 'ENDED'
+        WHERE status = 'ONGOING' AND end_at &lt;= #{now}
+    </update>
 </mapper>
